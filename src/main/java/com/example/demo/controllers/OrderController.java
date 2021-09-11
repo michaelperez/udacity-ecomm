@@ -4,7 +4,6 @@ import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.UserOrder;
 import com.example.demo.model.persistence.repositories.OrderRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +12,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
-	
-	
-	@Autowired
+
+
 	private UserRepository userRepository;
-	
-	@Autowired
+
 	private OrderRepository orderRepository;
+
+	public OrderController(UserRepository userRepository, OrderRepository orderRepository) {
+		this.userRepository = userRepository;
+		this.orderRepository = orderRepository;
+	}
 	
 	
 	@PostMapping("/submit/{username}")
